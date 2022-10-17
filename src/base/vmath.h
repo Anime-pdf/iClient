@@ -27,6 +27,11 @@ public:
 	{
 	}
 
+	constexpr vector2_base(T xy) :
+		x(xy), y(xy)
+	{
+	}
+
 	constexpr vector2_base(T nx, T ny) :
 		x(nx), y(ny)
 	{

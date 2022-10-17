@@ -34,7 +34,7 @@ bool CLaser::HitCharacter(vec2 From, vec2 To)
 	vec2 At;
 	CCharacter *pOwnerChar = GameWorld()->GetCharacterByID(m_Owner);
 	CCharacter *pHit;
-	bool DontHitSelf = (g_Config.m_SvOldLaser || !GameWorld()->m_WorldConfig.m_IsDDRace) || (m_Bounces == 0 && !m_WasTele);
+	bool DontHitSelf = true; //(g_Config.m_SvOldLaser || !GameWorld()->m_WorldConfig.m_IsDDRace) || (m_Bounces == 0 && !m_WasTele);
 
 	if(pOwnerChar ? (!pOwnerChar->LaserHitDisabled() && m_Type == WEAPON_LASER) || (!pOwnerChar->ShotgunHitDisabled() && m_Type == WEAPON_SHOTGUN) : g_Config.m_SvHit)
 		pHit = GameWorld()->IntersectCharacter(m_Pos, To, 0.f, At, DontHitSelf ? pOwnerChar : 0, m_Owner);
@@ -82,7 +82,7 @@ bool CLaser::HitCharacter(vec2 From, vec2 To)
 	}
 	else if(m_Type == WEAPON_LASER)
 	{
-		pHit->UnFreeze();
+		pHit->TakeDamage(0, 100, m_Owner, WEAPON_LASER);
 	}
 	return true;
 }
@@ -153,7 +153,7 @@ void CLaser::DoBounce()
 			m_Bounces++;
 			m_WasTele = false;
 
-			int BounceNum = GetTuning(m_TuneZone)->m_LaserBounceNum;
+			int BounceNum = 2; //GetTuning(m_TuneZone)->m_LaserBounceNum;
 
 			if(m_Bounces > BounceNum)
 				m_Energy = -1;
