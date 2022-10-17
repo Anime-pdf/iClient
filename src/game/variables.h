@@ -12,6 +12,8 @@
 #endif
 
 // client
+MACRO_CONFIG_INT(ClCustomAnimations, cl_custom_aimations, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Enable sitting/running animations")
+
 MACRO_CONFIG_INT(ClPredict, cl_predict, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Predict client movements")
 MACRO_CONFIG_INT(ClPredictDummy, cl_predict_dummy, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Predict dummy movements")
 MACRO_CONFIG_INT(ClAntiPingLimit, cl_antiping_limit, 0, 0, 200, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Antiping limit (0 to disable)")
